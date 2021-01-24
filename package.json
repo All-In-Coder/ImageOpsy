@@ -6,7 +6,6 @@
   "scripts": {
     "test": "nodemon index",
     "start": "node index.js"
-
   },
   "keywords": [
     "DeepAI",
@@ -22,6 +21,8 @@
     "deepai": "^1.0.17",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
-    "mongoose": "^5.11.12"
+    "mongoose": "^5.11.12",
+    "multer": "^1.4.2",
+    "nunjucks": "^3.2.2"
   }
 }
