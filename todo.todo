@@ -1,0 +1,29 @@
+✔ Creation of Project(npm init) @done(21-01-18 00:10)
+
+✔ Install Dependencies @done(21-01-18 00:13)
+    ✔ Express @done(21-01-18 00:13)
+    ✔ Mongoose @done(21-01-18 00:13)
+    ✔ Body-Parser @done(21-01-18 00:13)
+    ✔ hbs @done(21-01-18 00:13)
+    ✔ deepai @done(21-01-18 00:13)
+    ✔ cloudinary @done(21-01-18 00:13)
+
+
+
+✔ Basic UI for all the Options @done(21-01-24 02:59)
+
+✔ Routes @done(21-01-24 03:20)
+
+☐ Storing and getting url for image
+
+☐ Connection with the deepai
+
+☐ Include
+    ☐ Content Moderation
+    ☐ Nudity Detection
+    ☐ Celebrity Recognition
+    ☐ Facial Expression
+    ☐ Image Similarity
+    ☐ CNMRF
+    ☐ Colorizer
+

@@ -1,0 +1,23 @@
+.card-title{
+    font-size: 32px;
+    color: black;
+    
+}
+
+.card:hover{
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 2px ;
+}
+
+.card {
+    padding: 15px; /* JUST TO LOOK COOL */
+    border: 1px solid white;  /* JUST TO LOOK COOL */
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px;
+    transition: all .3s ease-in-out;
+  }
+  
+  .card:hover {
+    box-shadow: rgba(0, 0, 0, 0.22) 0px 19px 43px;
+    transform: translate3d(0px, -1px, 0px);
+  }
