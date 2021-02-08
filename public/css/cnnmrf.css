@@ -1,0 +1,49 @@
+.first_original {
+  border: 2px solid black;
+  height: 30px;
+  display: inline-block;
+  height: 312px;
+  width: 314px;
+  margin: 15px;
+  margin-right: 38px;
+}
+
+.second_original {
+  display: inline-block;
+  border: 2px solid black;
+  height: 30px;
+  height: 312px;
+  width: 314px;
+  margin: 15px;
+  margin-left: 26px;
+}
+#submit {
+  width: 200px;
+  height: 94px;
+  border-radius: 32px;
+  box-shadow: 3px 8px brown;
+  margin-top: 30px;
+}
+.submit {
+  margin-left: 309px;
+}
+.plus {
+  display: inline-block;
+  position: absolute;
+  margin-left: -35px;
+  margin-top: 117px;
+}
+.plusSign {
+  font-size: 36px;
+}
+.ans {
+  background-color: black;
+  margin-top: -519px;
+}
+
+.file {
+  padding-top: 100px;
+  display: inline-block;
+  color: black;
+  padding-left: 9px;
+}

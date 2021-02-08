@@ -1,0 +1,16 @@
+.ans {
+  background-color: black;
+}
+.nude {
+  height: 200px;
+  width: 300px;
+  text-align: center;
+  line-height: 3rem;
+  font-size: 107px;
+  margin-top: 165px;
+  margin-left: 68px;
+  text-shadow: bisque;
+  color: gray;
+  text-shadow: darkorchid;
+  text-shadow: 5px 0px aqua;
+}

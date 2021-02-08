@@ -1,0 +1,23 @@
+.ans{
+    background-color: black;
+}
+
+.celebrity {
+  
+  height: 273px;
+  width: 300px;
+  text-align: center;
+  line-height: 5rem;
+  font-size: 45px;
+  margin-top: 145px;
+  margin-left: 68px;
+  text-shadow: bisque;
+  color: gray;
+  text-shadow: darkorchid;
+  text-shadow: 5px 0px darkorchid;
+  line-break: 3px;
+  letter-spacing: 3px;
+  line-break: 40px;
+  word-wrap: inherit;
+  word-break: break-all;
+}

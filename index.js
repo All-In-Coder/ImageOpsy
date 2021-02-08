@@ -93,7 +93,7 @@ app.post("/colorizer", upload.single("image"), (req, res, next) => {
           res.render(__dirname + "/views/pages/" + "colorizer.hbs", {
             img: resp.output_url,
           });
-        //   console.log(JSON.stringify(resp));
+          //   console.log(JSON.stringify(resp));
         } catch (e) {
           console.log("Error" + e);
           res.render(__dirname + "/views/pages/" + "colorizer.hbs");
@@ -112,6 +112,184 @@ app.post("/colorizer", upload.single("image"), (req, res, next) => {
       });
     });
 });
+
+app.get("/nudity", (req, res) => {
+  res.render(__dirname + "/views/pages/" + "nudity.hbs");
+});
+app.post("/nudity", upload.single("image"), (req, res, next) => {
+  const file = req.file;
+  cloudinary.uploader
+    .upload(__dirname + "/uploads/" + file.filename, { tags: "basic_sample" })
+    .then(function (image) {
+      async function check() {
+        try {
+          var resp = await deepai.callStandardApi("nsfw-detector", {
+            image: image.url,
+          });
+          console.log(resp.output.nsfw_score);
+          const nudeDetector = (resp.output.nsfw_score * 100).toFixed(2);
+          res.render(__dirname + "/views/pages/" + "nudity.hbs", {
+            nudeDetector: nudeDetector,
+          });
+        } catch (e) {
+          console.log("Error" + e);
+          res.render(__dirname + "/views/pages/" + "nudity.hbs");
+        }
+      }
+      check();
+    })
+    .catch(function (err) {
+      console.log();
+      console.log("** File Upload (Promise)");
+      if (err) {
+        console.warn(err);
+      }
+      res.render(__dirname + "/views/pages/" + "nudity.hbs", {
+        err: "Error",
+      });
+    });
+});
+
+app.get("/celebrity-recognition", (req, res) => {
+  res.render(__dirname + "/views/pages/" + "celebrityRecognition.hbs");
+});
+
+app.post("/celebrity-recognition", upload.single("image"), (req, res, next) => {
+  const file = req.file;
+  cloudinary.uploader
+    .upload(__dirname + "/uploads/" + file.filename, { tags: "basic_sample" })
+    .then(function (image) {
+      async function check() {
+        try {
+          var resp = await deepai.callStandardApi("celebrity-recognition", {
+            image: image.url,
+          });
+          var ans = JSON.stringify(resp);
+          console.log(ans);
+          var output = resp.output.celebrities[0]["name"].toUpperCase();
+          res.render(__dirname + "/views/pages/" + "celebrityRecognition.hbs", {
+            celebrity: output,
+          });
+          //   console.log(JSON.stringify(resp));
+        } catch (e) {
+          console.log("Error" + e);
+          res.render(__dirname + "/views/pages/" + "celebrityRecognition.hbs");
+        }
+      }
+      check();
+    })
+    .catch(function (err) {
+      console.log();
+      console.log("** File Upload (Promise)");
+      if (err) {
+        console.warn(err);
+      }
+      res.render(__dirname + "/views/pages/" + "celebrityRecognition.hbs", {
+        err: "Error",
+      });
+    });
+});
+
+app.get("/facial-expression", (req, res) => {
+  res.render(__dirname + "/views/pages/" + "facialExpression.hbs");
+});
+
+app.post("/facial-expression", upload.single("image"), (req, res, next) => {
+  const file = req.file;
+  console.log(file.filename);
+  cloudinary.uploader
+    .upload(__dirname + "/uploads/" + file.filename, { tags: "basic_sample" })
+    .then(function (image) {
+      async function check() {
+        try {
+          var resp = await deepai.callStandardApi(
+            "facial-expression-recognition",
+            {
+              image: image.url,
+            }
+          );
+          console.log(resp);
+
+          const output = "Can't Decide";
+          if (resp.output.expressions.length)
+            output = resp.output.expressions[0].emotion.toUpperCase();
+          res.render(__dirname + "/views/pages/" + "facialExpression.hbs", {
+            emotions: output,
+          });
+          //   console.log(JSON.stringify(resp));
+        } catch (e) {
+          console.log("Error" + e);
+          res.render(__dirname + "/views/pages/" + "facialExpression.hbs");
+        }
+      }
+      check();
+    })
+    .catch(function (err) {
+      console.log();
+      console.log("** File Upload (Promise)");
+      if (err) {
+        console.warn(err);
+      }
+      res.render(__dirname + "/views/pages/" + "facialExpression.hbs", {
+        err: "Error",
+      });
+    });
+});
+
+app.get("/cnnmrf", (req, res) => {
+  res.render(__dirname + "/views/pages/" + "CNNMRF.hbs");
+});
+
+app.post("/cnnmrf", upload.array("image", 2), (req, res, next) => {
+  const file = req.files;
+  // console.log(file);
+  var first_image = file[0].filename;
+  var second_image = file[1].filename;
+  // console.log(first_image, second_image);
+  cloudinary.uploader
+    .upload(__dirname + "/uploads/" + first_image, { tags: "basic_sample" })
+    .then(function (image) {
+      // console.log(image);
+      first_image = image.url;
+    });
+  cloudinary.uploader
+    .upload(__dirname + "/uploads/" + second_image, { tags: "basic_sample" })
+    .then(function (image) {
+      // console.log(image);
+      second_image = image.url;
+      async function check() {
+        try {
+          console.log("H");
+          var resp = await deepai.callStandardApi("CNNMRF", {
+            content: first_image,
+            style: second_image,
+          });
+          console.log(resp);
+    
+          
+          res.render(__dirname + "/views/pages/" + "CNNMRF.hbs",{img: resp.output_url,});
+          //   console.log(JSON.stringify(resp));
+        } catch (e) {
+          console.log("Error" + e);
+          res.render(__dirname + "/views/pages/" + "CNNMRF.hbs",{err:"Some Error Occured!!!!"});
+        }
+      }
+      check();
+      
+    }).catch(function (err) {
+      console.log();
+      console.log("** File Upload (Promise)");
+      if (err) {
+        console.warn(err);
+      }
+      res.render(__dirname + "/views/pages/" + "CNNMRF.hbs", {
+        err: "Error",
+      });
+    });
+  console.log(first_image, second_image);
+  
+});
+
 /* <=========================End of Routes =============================> */
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log("Started"));
