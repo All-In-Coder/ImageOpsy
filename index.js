@@ -11,6 +11,9 @@ const publicPath = path.resolve(__dirname, "public");
 const deepai = require("deepai");
 // <========================================================================================>
 
+require('dotenv').config();
+const port = process.env.PORT || 5000;
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, "uploads");
